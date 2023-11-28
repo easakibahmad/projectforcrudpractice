@@ -23,3 +23,7 @@
 2. schema
 3. model
 4. db query
+   
+# work with pattern
+1. student interface, schema and model created in separate module
+2. 
