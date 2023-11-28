@@ -23,7 +23,14 @@
 2. schema
 3. model
 4. db query
-   
+
 # work with pattern
+
 1. student interface, schema and model created in separate module
-2. 
+2. student routes, controller, service file creation for api management
+
+# api
+
+1. create student
+2. get all student
+3. get single student

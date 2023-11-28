@@ -30,5 +30,5 @@ const StudentSchema = new Schema<TStudent>({
   localGuardian: { type: LocalGuardianSchema },
 } );
 
-const Student = model<TStudent>('Student', StudentSchema);
+export const StudentModel = model<TStudent>('Student', StudentSchema);
 
