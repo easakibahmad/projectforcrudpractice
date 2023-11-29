@@ -1,3 +1,5 @@
+import { Model } from "mongoose";
+
 export type TAddress = {
   street: string;
   city: string;
@@ -25,3 +27,8 @@ export type TStudent = {
   permanentAddress: TAddress;
   localGuardian?: TLocalGuardian;
 };
+
+// for creating static
+export interface UserStaticModel extends Model<TStudent> {
+  isUserExists(studentID: number): Promise<TStudent | null>;
+}

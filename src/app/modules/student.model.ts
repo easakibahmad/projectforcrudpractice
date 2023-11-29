@@ -3,6 +3,7 @@ import {
   TAddress,
   TLocalGuardian,
   TStudent,
+  UserStaticModel,
 } from "./student/student.interface";
 import validator from "validator";
 
@@ -120,4 +121,10 @@ const StudentSchema = new Schema<TStudent>({
   localGuardian: { type: LocalGuardianSchema },
 });
 
-export const StudentModel = model<TStudent>("Student", StudentSchema);
+// creating a custom static method
+StudentSchema.statics.isUserExists = async function (studentID: number) {
+  const existingUser = await StudentModel.findOne({ studentID });
+  return existingUser;
+};
+
+export const StudentModel = model<TStudent, UserStaticModel>("Student", StudentSchema);
