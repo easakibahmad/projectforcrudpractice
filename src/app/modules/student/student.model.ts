@@ -4,7 +4,7 @@ import {
   TLocalGuardian,
   TStudent,
   UserStaticModel,
-} from "./student/student.interface";
+} from "./student.interface";
 import validator from "validator";
 
 const AddressSchema = new Schema<TAddress>({
@@ -18,23 +18,6 @@ const LocalGuardianSchema = new Schema<TLocalGuardian>({
   lastName: { type: String, required: true },
   phoneNumber: { type: String, required: true },
 });
-
-// const StudentSchema = new Schema<TStudent>({
-//   firstName: { type: String, required: [true, "first name can't be null"] }, //we can add inline validation by using mongoose validation as same as for object
-//   lastName: { type: String, required: true },
-//   dateOfBirth: { type: Date, required: true },
-//   email: { type: String, required: true, unique: true },
-//   phoneNumber: { type: String },
-//   studentID: { type: Number, required: true, unique: true },
-//   major: { type: String, required: true },
-//   enrolledCourses: [{ type: String, required: true }],
-//   address: { type: AddressSchema, required: true },
-//   isInternationalStudent: { type: Boolean, required: true },
-//   graduationYear: { type: Number, required: true },
-//   bloodGroup: { type: String, required: true },
-//   permanentAddress: { type: AddressSchema, required: true },
-//   localGuardian: { type: LocalGuardianSchema },
-// });
 
 const StudentSchema = new Schema<TStudent>({
   firstName: {
@@ -127,4 +110,7 @@ StudentSchema.statics.isUserExists = async function (studentID: number) {
   return existingUser;
 };
 
-export const StudentModel = model<TStudent, UserStaticModel>("Student", StudentSchema);
+export const StudentModel = model<TStudent, UserStaticModel>(
+  "Student",
+  StudentSchema
+);

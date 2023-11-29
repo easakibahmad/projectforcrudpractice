@@ -40,3 +40,7 @@
 1. we can add validation from mongoose for object or other data types
 2. we can validate by using mongoose custom validation function
 3. using validator built in library for validation
+
+# method
+
+1. mongoose static method
