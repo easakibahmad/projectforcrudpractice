@@ -34,3 +34,9 @@
 1. create student
 2. get all student
 3. get single student
+
+# validation
+
+1. we can add validation from mongoose for object or other data types
+2. we can validate by using mongoose custom validation function
+3. using validator built in library for validation
