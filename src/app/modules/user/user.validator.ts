@@ -1,14 +1,14 @@
 import { z } from "zod";
 
-const UserSchemaValidator = z.object({
+const userValidationSchema = z.object({
   password: z
     .string({
-      invalid_type_error: "Password must be a string",
+      invalid_type_error: "Password must be string",
     })
-    .min(8, { message: "Password must be at least 8 characters long" })
+    .max(20, { message: "Password can not be more than 20 characters" })
     .optional(),
 });
 
-export const UserZodValidator = {
-  UserSchemaValidator,
+export const UserValidation = {
+  userValidationSchema,
 };
