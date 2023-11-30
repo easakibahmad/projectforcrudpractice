@@ -1,35 +1,47 @@
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 
-export type TAddress = {
-  street: string;
-  city: string;
-  zipCode: string;
+export type TUserName = {
+  firstName: string;
+  middleName: string;
+  lastName: string;
+};
+
+export type TGuardian = {
+  fatherName: string;
+  fatherOccupation: string;
+  fatherContactNo: string;
+  motherName: string;
+  motherOccupation: string;
+  motherContactNo: string;
 };
 
 export type TLocalGuardian = {
-  firstName: string;
-  lastName: string;
-  phoneNumber: string;
+  name: string;
+  occupation: string;
+  contactNo: string;
+  address: string;
 };
+
 export type TStudent = {
-  firstName: string;
-  user: Types.ObjectId;
-  lastName: string;
-  dateOfBirth: Date;
+  id: string;
+  password: string;
+  name: TUserName;
+  gender: "male" | "female" | "other";
+  dateOfBirth?: string;
   email: string;
-  phoneNumber?: string;
-  studentID: number;
-  major: string;
-  enrolledCourses: string[];
-  address: TAddress;
-  isInternationalStudent: boolean;
-  graduationYear: number;
-  bloodGroup: string;
-  permanentAddress: TAddress;
-  localGuardian?: TLocalGuardian;
+  contactNo: string;
+  emergencyContactNo: string;
+  bloodGroup?: "A+" | "A-" | "B+" | "B-" | "AB+" | "AB-" | "O+" | "O-";
+  presentAddress: string;
+  permanentAddress: string;
+  guardian: TGuardian;
+  localGuardian: TLocalGuardian;
+  profileImg?: string;
+  isActive: "active" | "blocked";
+  isDeleted: boolean;
 };
 
 // for creating static
-export interface UserStaticModel extends Model<TStudent> {
+export interface StudentStaticModel extends Model<TStudent> {
   isUserExists(studentID: number): Promise<TStudent | null>;
 }

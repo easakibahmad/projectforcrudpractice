@@ -1,35 +1,67 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from "express";
 import { StudentServices } from "./student.service";
 
-
-const GetStudents = async (req: Request, res: Response) => {
+const getAllStudents = async (req: Request, res: Response) => {
   try {
-    const result = await StudentServices.GetStudentsDataFromDB();
+    const result = await StudentServices.getAllStudentsFromDB();
+
     res.status(200).json({
-      status: true,
-      message: "successfully retrieved students data",
+      success: true,
+      message: "Students are retrieved successfully",
       data: result,
     });
-  } catch (error) {
-    console.log(error);
+  } catch (err: any) {
+    res.status(500).json({
+      success: false,
+      message: err.message || "something went wrong",
+      error: err,
+    });
   }
 };
 
-const GetSingleStudent = async (req: Request, res: Response) => {
-  const { studentID } = req.params;
+const getSingleStudent = async (req: Request, res: Response) => {
+  try {
+    const { studentId } = req.params;
 
-  const result = await StudentServices.GetSingleStudentFromDB(
-    parseInt(studentID, 10)
-  );
+    const result = await StudentServices.getSingleStudentFromDB(studentId);
 
-  res.status(200).json({
-    status: true,
-    message: "student data retrieved successfully",
-    data: result,
-  });
+    res.status(200).json({
+      success: true,
+      message: "Student is retrieved successfully",
+      data: result,
+    });
+  } catch (err: any) {
+    res.status(500).json({
+      success: false,
+      message: err.message || "something went wrong",
+      error: err,
+    });
+  }
+};
+
+const deleteStudent = async (req: Request, res: Response) => {
+  try {
+    const { studentId } = req.params;
+
+    const result = await StudentServices.deleteStudentFromDB(studentId);
+
+    res.status(200).json({
+      success: true,
+      message: "Student is deleted successfully",
+      data: result,
+    });
+  } catch (err: any) {
+    res.status(500).json({
+      success: false,
+      message: err.message || "something went wrong",
+      error: err,
+    });
+  }
 };
 
 export const StudentControllers = {
-  GetStudents,
-  GetSingleStudent,
+  getAllStudents,
+  getSingleStudent,
+  deleteStudent,
 };

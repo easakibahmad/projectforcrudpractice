@@ -1,17 +1,23 @@
 import { StudentModel } from "./student.model";
 
 
-const GetStudentsDataFromDB = async () => {
+const getAllStudentsFromDB = async () => {
   const result = await StudentModel.find();
   return result;
 };
 
-const GetSingleStudentFromDB = async (studentID: number) => {
-  const result = await StudentModel.findOne({ studentID });
+const getSingleStudentFromDB = async (id: string) => {
+  const result = await StudentModel.aggregate([{ $match: { id } }]);
+  return result;
+};
+
+const deleteStudentFromDB = async (id: string) => {
+  const result = await StudentModel.updateOne({ id }, { isDeleted: true });
   return result;
 };
 
 export const StudentServices = {
-  GetStudentsDataFromDB,
-  GetSingleStudentFromDB,
+  getAllStudentsFromDB,
+  getSingleStudentFromDB,
+  deleteStudentFromDB,
 };
