@@ -1,4 +1,4 @@
-import { Model } from "mongoose";
+import { Model, Types } from "mongoose";
 
 export type TAddress = {
   street: string;
@@ -13,6 +13,7 @@ export type TLocalGuardian = {
 };
 export type TStudent = {
   firstName: string;
+  user: Types.ObjectId;
   lastName: string;
   dateOfBirth: Date;
   email: string;

@@ -5,30 +5,27 @@ const UserSchema = new Schema<TUser>(
   {
     id: {
       type: String,
-      required: true,
       unique: true,
     },
     password: {
       type: String,
-      required: true,
     },
     needsPasswordChange: {
       type: Boolean,
-      required: true,
+      default: true,
     },
     role: {
       type: String,
       enum: ["admin", "student", "faculty"],
-      required: true,
     },
     status: {
       type: String,
       enum: ["in-progress", "active"],
-      required: true,
+      default: "in-progress",
     },
     isDeleted: {
       type: Boolean,
-      required: true,
+      default: false,
     },
   },
   {

@@ -40,6 +40,12 @@ const StudentSchema = new Schema<TStudent>({
     },
     set: (value: string) => value.toUpperCase(),
   },
+  user: {
+    type: Schema.Types.ObjectId,
+    required: [true, "User Id is required"],
+    unique: true,
+    ref: "UserModel",
+  },
   dateOfBirth: { type: Date, required: [true, "Date of birth is required"] },
   email: {
     type: String,
