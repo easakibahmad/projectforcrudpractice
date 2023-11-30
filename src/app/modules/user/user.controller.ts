@@ -1,17 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import httpStatus from "http-status";
 
-import { NextFunction, Request, Response } from "express";
 import { UserServices } from "./user.service";
 import sendResponse from "../../utils/sendResponse";
-import { RequestHandler } from "express-serve-static-core";
+import { catchAsync } from "../../utils/catchAsync";
 
-//create higher order function
-const catchAsync = (fn: RequestHandler) => {
-  return (req: Request, res: Response, next: NextFunction) => {
-    Promise.resolve(fn(req, res, next)).catch((err) => next(err));
-  };
-};
+
 
 const createStudent = catchAsync(async (req, res, next) => {
   const { password, student: studentData } = req.body;
