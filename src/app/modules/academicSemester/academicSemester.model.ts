@@ -38,6 +38,7 @@ const academicSemesterSchema = new Schema<TAcademicSemester>(
   }
 );
 
+//Two identical semesters do not coexist in the same year.
 academicSemesterSchema.pre("save", async function (next) {
   const isSemesterExists = await AcademicSemester.findOne({
     year: this.year,
