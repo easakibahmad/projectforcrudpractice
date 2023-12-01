@@ -1,12 +1,12 @@
-import { Schema, model } from "mongoose";
+import { Schema, model } from 'mongoose';
 import {
   AcademicSemesterCode,
   AcademicSemesterName,
   Months,
-} from "./academicSemester.constant";
-import { TAcademicSemester } from "./academicSemester.interface";
+} from './academicSemester.constant';
+import { TAcademicSemester } from './academicSemester.interface';
 
-const academicSemesterSchema = new Schema<TAcademicSemester>(
+const acdemicSemesterSchema = new Schema<TAcademicSemester>(
   {
     name: {
       type: String,
@@ -35,25 +35,24 @@ const academicSemesterSchema = new Schema<TAcademicSemester>(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
-//Two identical semesters do not coexist in the same year.
-academicSemesterSchema.pre("save", async function (next) {
+acdemicSemesterSchema.pre('save', async function (next) {
   const isSemesterExists = await AcademicSemester.findOne({
     year: this.year,
     name: this.name,
   });
 
   if (isSemesterExists) {
-    throw new Error("Semester is already exists !");
+    throw new Error('Semester is already exists !');
   }
   next();
 });
 
 export const AcademicSemester = model<TAcademicSemester>(
-  "AcademicSemester",
-  academicSemesterSchema
+  'AcademicSemester',
+  acdemicSemesterSchema,
 );
 
 // Name Year
@@ -61,6 +60,8 @@ export const AcademicSemester = model<TAcademicSemester>(
 // 2031 Autumn
 //2030 Autumn => XXX
 //2030 Fall => Created
+
+
 
 // Autumn 01
 // Summar 02
