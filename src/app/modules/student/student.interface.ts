@@ -1,5 +1,11 @@
-import { Model, Types } from 'mongoose';
+/*
+Student Interface creation: 
 
+1. student interface: id, name(firstName, lastName, middleName), gender, dob, email, contactNo, emergencyContactNo, bloodGroup, presentAddress, permanentAddress, guardian, profileImg, isActive, 
+
+2. type for guardian, localGuardian and name
+*/
+import { Model, Types } from "mongoose";
 export type TUserName = {
   firstName: string;
   middleName: string;
@@ -27,12 +33,12 @@ export type TStudent = {
   user: Types.ObjectId;
   password: string;
   name: TUserName;
-  gender: 'male' | 'female' | 'other';
+  gender: "male" | "female" | "other";
   dateOfBirth?: Date;
   email: string;
   contactNo: string;
   emergencyContactNo: string;
-  bloogGroup?: 'A+' | 'A-' | 'B+' | 'B-' | 'AB+' | 'AB-' | 'O+' | 'O-';
+  bloodGroup?: "A+" | "A-" | "B+" | "B-" | "AB+" | "AB-" | "O+" | "O-";
   presentAddress: string;
   permanentAddress: string;
   guardian: TGuardian;
@@ -40,6 +46,7 @@ export type TStudent = {
   profileImg?: string;
   admissionSemester: Types.ObjectId;
   isDeleted: boolean;
+  academicDepartment: Types.ObjectId;
 };
 
 //for creating static

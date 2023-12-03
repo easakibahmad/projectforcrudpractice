@@ -1,17 +1,14 @@
-# github repository created
-
 # step by step project set up
 
-1. npm initialization: npm init -y
+1. npm initialization: npm init -y  
 2. install express js: npm install express
 3. install mongoose: npm install mongoose --save
 4. install typescript: npm install typescript --save-dev
 5. cors installation: npm install cors  
-   usage of cors -> Cross-origin resource sharing (CORS) is an extension of the same-origin policy. You need it for authorized resource sharing with external third parties. For example, you need CORS when you want to pull data from external APIs that are public or authorized.
 6. dotenv installation: npm i dotenv
-7. tsc initialization: tsc -init
+7. tsc initialization: tsc -init (typescript json file creation)
 8. root and out directory setup: tsconfig.json file (rootDir -> src and outDir -> dist)
-9. add into scripts -> 'build' : 'tsc'
+9.  add into scripts -> 'build' : 'tsc'
 10. mongodb connection establishment
 11. dotenv configuration folder
 12. eslint installed
